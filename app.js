@@ -1,14 +1,19 @@
-// require packages used in the project
+// include packages and define server related variables
 const express = require('express')
+const exphbs = require('express-handlebars')
 const app = express()
 const port = 3000
 
-// routes setting
+// setting template engine
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+app.set('view engine', 'handlebars')
+
+// setting routes
 app.get('/', (req, res) => {
-  res.send('This is my movie list built with Express')
+  res.render('index')
 })
 
-// start and listen on the Express server
+// starts the express server and listening for connections.
 app.listen(port, () => {
-  console.log(`Express is listening on localhost:${port}`)
+  console.log(`Express app listening on port ${port}.`)
 })
